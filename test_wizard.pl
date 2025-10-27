@@ -201,17 +201,16 @@ ensure it can be read.
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
 :- multifile
-    user:message_hook/3.
+    prolog:message_action/2.
 
-user:message_hook(toplevel_goal(Goal0, Bindings), _Level, _Lines) :-
+prolog:message_action(toplevel_goal(Goal0, Bindings), _Level) :-
     open_query_log(Out),
     bind_vars(Bindings),
     clean_goal(Goal0, Goal),
     call_cleanup(format(Out, '~W.~n', [Goal, [ numbervars(true),
                                                quoted(true),
                                                ignore_ops(true)
-                                             ]]), close(Out)),
-    fail.
+                                             ]]), close(Out)).
 
 clean_goal(Var, _) :-
     var(Var), !, fail.

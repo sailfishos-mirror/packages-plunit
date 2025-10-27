@@ -2583,16 +2583,15 @@ tty_down_and_home(Lines) :-
 
 :- multifile
     prolog:message/3,
-    user:message_hook/3.
+    prolog:message_action/2.
 
 prolog:message(Term) -->
     message(Term).
 
-%       user:message_hook(+Term, +Kind, +Lines)
+%       prolog:message_action(+Term, +Kind)
 
-user:message_hook(make(done(Files)), _, _) :-
-    make_run_tests(Files),
-    fail.                           % give other hooks a chance
+prolog:message_action(make(done(Files)), _) :-
+    make_run_tests(Files).
 
 :- endif.
 
