@@ -250,8 +250,9 @@ loading_tests :-
 		 *            MODULE            *
 		 *******************************/
 
+:- thread_local
+    loading_unit/4.                 % Unit, Module, File, OldSource
 :- dynamic
-    loading_unit/4,                 % Unit, Module, File, OldSource
     current_unit/4,                 % Unit, Module, Context, Options
     test_file_for/2.                % ?TestFile, ?PrologFile
 
