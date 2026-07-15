@@ -1377,7 +1377,7 @@ cleanup(Module, Options) :-
     ).
 
 success(Unit, Name, Progress, Line, Det, Time, _Output, Options) :-
-    memberchk(fixme(Reason), Options),
+    option(fixme(Reason), Options),
     !,
     (   (   Det == true
 	;   memberchk(nondet, Options)
